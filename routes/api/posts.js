@@ -64,7 +64,7 @@ router.get("/:id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) {
-      return res.status(404).json({ msg: "Post not found" });
+      return res.status(404).json({ msg: "Post not found." });
     }
 
     res.json({ post });
@@ -72,7 +72,7 @@ router.get("/:id", auth, async (req, res) => {
     console.error(err.message);
 
     if (err.kind === "ObjectId") {
-      return res.status(404).json({ msg: "Post not found" });
+      return res.status(404).json({ msg: "Post not found." });
     }
     res.status(500).send("Server Error.");
   }
@@ -87,12 +87,12 @@ router.delete("/:id", auth, async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     if (!post) {
-      return res.status(404).json({ msg: "Post not found" });
+      return res.status(404).json({ msg: "Post not found." });
     }
 
     // Check user
     if (post.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "user not authorized" });
+      return res.status(401).json({ msg: "user not authorized." });
     }
 
     await post.remove();
@@ -101,7 +101,7 @@ router.delete("/:id", auth, async (req, res) => {
     console.error(err.message);
 
     if (err.kind === "ObjectId") {
-      return res.status(404).json({ msg: "Post not found" });
+      return res.status(404).json({ msg: "Post not found." });
     }
     res.status(500).send("Server Error.");
   }
