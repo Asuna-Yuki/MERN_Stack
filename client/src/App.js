@@ -41,6 +41,9 @@ const App = () => {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               {/* <PrivateRoute path='/dashboard' element={<Dashboard />} /> */}
+              <Route path='/dashboard' element={<PrivateRoute />}>
+                <Route path='/dashboard' element={<Dashboard />} />
+              </Route>
             </Routes>
           </section>
         </Fragment>
